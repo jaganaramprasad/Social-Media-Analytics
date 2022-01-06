@@ -150,7 +150,11 @@ Returns: str
 '''
 def findSentiment(classifier, message):
     score = classifier.polarity_scores(message)['compound']
-    return
+    if score<-0.1:
+        return "negative"
+    if score>0.1:
+        return "positive"
+    return "neutral"
 
 
 '''
@@ -323,7 +327,8 @@ if __name__ == "__main__":
     # test.testParseState()
     # test.testFindHashtags()
     # test.testGetRegionFromState()
-    test.testAddColumns()
+    # test.testAddColumns()
+    test.testFindSentiment()
 
     ## Uncomment these for Week 2 ##
     """print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
