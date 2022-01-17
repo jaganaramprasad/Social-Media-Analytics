@@ -249,7 +249,18 @@ Parameters: dataframe ; str
 Returns: float
 '''
 def getHashtagSentiment(data, hashtag):
-    return
+    s=0
+    count=0
+    for i,j in data.iterrows():
+        if hashtag in findHashtags(j["text"]):
+            if j["sentiment"] =="positive":
+                count+=1
+            elif j["sentiment"] =="negative":
+                count-=1
+            elif j["sentiment"] =="neutral":
+                count+=0
+            s+=1
+    return count/s
 
 
 ### PART 3 ###
@@ -378,7 +389,8 @@ if __name__ == "__main__":
     # test.testGetDataCountByState(df)
     # test.testGetDataForRegion(df)
     # test.testGetHashtagRates(df)
-    test.testMostCommonHashtags(df)
+    # test.testMostCommonHashtags(df)
+    test.testGetHashtagSentiment(df)
 
     ## Uncomment these for Week 3 ##
     """print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
